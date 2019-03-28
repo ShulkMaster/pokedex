@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Pokedex</string>
+    <string name="loading">Cargando…</string>
+    <string name="load">loading</string>
 </resources>

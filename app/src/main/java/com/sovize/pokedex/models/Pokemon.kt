@@ -1,3 +1,3 @@
 package com.sovize.pokedex.models
 
-data class Pokemon(val height: Int, val id: Int)
+data class Pokemon(var id: Int, var name: String, var url: String)
