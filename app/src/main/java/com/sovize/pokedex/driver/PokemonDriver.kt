@@ -3,7 +3,7 @@ package com.sovize.pokedex.driver
 import retrofit2.Retrofit
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import com.sovize.pokedex.utilities.ServerInfo
-import com.sovize.pokedex.interfaces.pokemonInterface
+import com.sovize.pokedex.interfaces.PokemonInterface
 
 class PokemonDriver {
 
@@ -16,8 +16,8 @@ class PokemonDriver {
      * the http response into a Kotlin String
      * */
 
-    fun getPokemonList(): pokemonInterface{
-        return httpAdapter.create(pokemonInterface::class.java)
+    fun getPokemonList(): PokemonInterface{
+        return httpAdapter.create(PokemonInterface::class.java)
     }
 
 }

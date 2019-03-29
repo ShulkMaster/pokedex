@@ -5,8 +5,8 @@ import retrofit2.http.GET
 import com.sovize.pokedex.utilities.ServerInfo
 import retrofit2.http.Query
 
-interface pokemonInterface {
+interface PokemonInterface {
 
     @GET(ServerInfo.pokeURL)
-    fun getPokemons(@Query("limit") index: Int): Call<String>
+    fun getPokemon(@Query("offset") offset: Int, @Query("limit") limit: Int): Call<String>
 }
