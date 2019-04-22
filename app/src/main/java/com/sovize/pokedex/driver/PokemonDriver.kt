@@ -1,13 +1,13 @@
 package com.sovize.pokedex.driver
 
 import retrofit2.Retrofit
-import retrofit2.converter.scalars.ScalarsConverterFactory
 import com.sovize.pokedex.utilities.ServerInfo
 import com.sovize.pokedex.interfaces.PokemonInterface
+import retrofit2.converter.scalars.ScalarsConverterFactory
 
 class PokemonDriver {
 
-    private var httpAdapter = Retrofit.Builder()
+    private var retrofit = Retrofit.Builder()
         .baseUrl(ServerInfo.baseURL)
         .addConverterFactory(ScalarsConverterFactory.create())
         .build()
@@ -17,7 +17,7 @@ class PokemonDriver {
      * */
 
     fun getPokemonList(): PokemonInterface{
-        return httpAdapter.create(PokemonInterface::class.java)
+        return retrofit.create(PokemonInterface::class.java)
     }
 
 }

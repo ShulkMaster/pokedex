@@ -5,7 +5,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.sovize.pokedex.models.Pokemon
+import com.sovize.pokedex.utilities.ServerInfo
 import kotlinx.android.synthetic.main.pokemon_template.view.*
 
 class PkAdapter(private val pokemon_list: List<Pokemon>) : RecyclerView.Adapter<PkAdapter.PkViewHolder>() {
@@ -21,8 +25,7 @@ class PkAdapter(private val pokemon_list: List<Pokemon>) : RecyclerView.Adapter<
     override fun onBindViewHolder(p0: PkViewHolder, p1: Int) {
         p0.bind(pokemon_list[p1])
         p0.itemView.setOnClickListener{
-            Log.i("MainActivity", getItemId(p1).toString())
-            Log.i("MainActivity", pokemon_list[p1].url)
+            Log.i("MainActivity", pokemon_list[p1].name)
         }
 
     }
@@ -32,7 +35,9 @@ class PkAdapter(private val pokemon_list: List<Pokemon>) : RecyclerView.Adapter<
         fun bind(item: Pokemon) = with(itemView) {
             pk_id.text = item.id.toString()
             pk_name.text = item.name
-            pk_url.text = item.url
+            Glide.with(itemView.context).load("${ServerInfo.pokeSprite}${item.id}.png")
+                .centerCrop().diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(itemView.findViewById(R.id.pk_cover))
         }
     }
 }
