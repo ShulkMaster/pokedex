@@ -11,7 +11,7 @@ data class Pokemon(
     var weight: Int?,
     var height: Int,
     var is_default: Boolean,
-    var location_area_encounters: String?,
+    var location_area_encounters: String,
     var sprites: Sprites?
 ) : Parcelable {
 
@@ -23,7 +23,7 @@ data class Pokemon(
         parcel.readValue(Int::class.java.classLoader) as? Int,
         parcel.readInt(),
         parcel.readByte() != 0.toByte(),
-        parcel.readValue(String::class.java.classLoader) as? String,
+        parcel.readString()!!,
         parcel.readParcelable(Sprites::class.java.classLoader) as? Sprites
     )
 

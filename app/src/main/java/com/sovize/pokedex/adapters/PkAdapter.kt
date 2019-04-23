@@ -5,12 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.bumptech.glide.request.transition.DrawableCrossFadeFactory
 import com.sovize.pokedex.R
 import com.sovize.pokedex.models.Pokemon
+import com.sovize.pokedex.utilities.Glider
 import com.sovize.pokedex.utilities.ServerInfo
 
 class PkAdapter(
@@ -35,14 +32,7 @@ class PkAdapter(
         fun bind(item: Pokemon, clickFunction: (Pokemon) -> Unit) = with(itemView) {
             itemView.findViewById<TextView>(R.id.pk_id).text = item.id.toString()
             itemView.findViewById<TextView>(R.id.pk_name).text = item.name
-            val factory = DrawableCrossFadeFactory.Builder().setCrossFadeEnabled(true).build()
-            Glide.with(itemView.context).load("${ServerInfo.pokeSprite}${item.id}.png")
-                .fitCenter()
-                .transition(DrawableTransitionOptions.withCrossFade(factory))
-                .placeholder(R.drawable.loading)
-                .error(R.drawable.ic_broken_image_black_24dp)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(itemView.findViewById(R.id.pk_cover))
+            Glider().load(itemView,"${ServerInfo.pokeSprite}${item.id}.png", R.id.pk_cover)
             this.setOnClickListener{clickFunction(item)}
         }
     }

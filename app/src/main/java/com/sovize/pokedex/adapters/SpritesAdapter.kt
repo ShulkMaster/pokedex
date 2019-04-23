@@ -3,14 +3,10 @@ package com.sovize.pokedex.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.sovize.pokedex.R
-import com.bumptech.glide.request.transition.DrawableCrossFadeFactory
-
-
+import com.sovize.pokedex.utilities.Glider
 
 
 class SpritesAdapter(private val spriteList: List<String>) : RecyclerView.Adapter<SpritesAdapter.SpriteViewHolder>() {
@@ -31,15 +27,10 @@ class SpritesAdapter(private val spriteList: List<String>) : RecyclerView.Adapte
 
         fun bind(item: String) {
             if (item != "") {
-                val factory = DrawableCrossFadeFactory.Builder().setCrossFadeEnabled(true).build()
-                Glide.with(itemView.context)
-                    .load(item)
-                    .transition(withCrossFade(factory))
-                    .placeholder(R.drawable.loading)
-                    .error(R.drawable.ic_broken_image_black_24dp)
-                    .fitCenter()
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(itemView.findViewById(R.id.poke_sprite))
+                Glider().load(itemView, item, R.id.poke_sprite)
+            }else {
+                val icon = itemView.resources.getDrawable(R.drawable.missing)
+                itemView.findViewById<ImageView>(R.id.poke_sprite).setImageDrawable(icon)
             }
         }
     }

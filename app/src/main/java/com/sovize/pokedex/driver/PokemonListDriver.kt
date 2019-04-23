@@ -32,7 +32,7 @@ class PokemonListDriver(pokemonArray: ArrayList<Pokemon>) {
                     when (response.code()) {
                         200 -> {
                             val pokemonCounter = pokemonData.size
-                            for (x: Int in 0 until 50) {
+                            for (x: Int in 0 until response.body()?.results?.size!!) {
                                 response.body()?.results?.get(x)?.id = x + pokemonCounter + 1
                                 Log.d(
                                     tag,

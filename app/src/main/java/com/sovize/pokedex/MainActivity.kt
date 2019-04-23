@@ -57,15 +57,20 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun startPokemon(pokemon: Pokemon) {
+    private fun startPokemon(pokemon: Pokemon) {
 
         if (findViewById<FrameLayout>(R.id.content) != null) {
             pokemonLoader.getPokemonById(pokemon.id, pokemonDetail::setPokemonView)
         } else {
-            val opener = Intent(this@MainActivity, PokemonActivity::class.java)
-            opener.putExtra(AppKeys.pokemon, pokemon)
-            startActivity(opener)
+            pokemonLoader.getPokemonById(pokemon.id, this::launchActivity)
         }
+    }
+
+    private fun launchActivity(pokemon: Pokemon){
+        Log.d(tag, "${pokemon.id} and ${pokemon.name} and ${pokemon.url} and ${pokemon.weight}")
+        val opener = Intent(this@MainActivity, PokemonActivity::class.java)
+        opener.putExtra(AppKeys.pokemon, pokemon)
+        startActivity(opener)
     }
 
 
