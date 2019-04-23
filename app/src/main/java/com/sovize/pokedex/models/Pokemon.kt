@@ -8,5 +8,19 @@ data class Pokemon(
     var weight: Int?,
     var height: Int,
     var is_default: Boolean,
-    var location_area_encounters: String
-)
+    var location_area_encounters: String,
+    var sprites: Sprites
+){
+    fun getSpriteList(): ArrayList<String>{
+        val dataPack = ArrayList<String>()
+        dataPack.add(sprites.back_default?:"")
+        dataPack.add(sprites.back_female?:"")
+        dataPack.add(sprites.back_shiny?:"")
+        dataPack.add(sprites.back_shiny_female?:"")
+        dataPack.add(sprites.front_default?:"")
+        dataPack.add(sprites.front_female?:"")
+        dataPack.add(sprites.front_shiny?:"")
+        dataPack.add(sprites.front_shiny_female?:"")
+        return dataPack
+    }
+}
