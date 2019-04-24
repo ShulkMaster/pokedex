@@ -16,8 +16,6 @@ import com.sovize.pokedex.utilities.ServerInfo
 
 class PokemonFragment: Fragment() {
 
-    private val etiquette = "PokemonFragment"
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         return inflater.inflate(R.layout.pokemon_details, container, false)
